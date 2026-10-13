@@ -46,7 +46,7 @@ function Events() {
                   schema={eventRegistrationSchema}
                   submitLabel="Confirm registration"
                   successText="You're registered! We'll contact you with event details."
-                  defaults={{ email: user?.email ?? "", full_name: (user?.user_metadata?.full_name as string) ?? "" }}
+                  defaults={{ email: user?.email ?? "", full_name: (user?.user_metadata?.["full_name"] as string) ?? "" }}
                   fields={[{ name: "full_name", label: "Full name" }, { name: "email", label: "Email", type: "email" }, { name: "phone", label: "Phone number", type: "tel", optional: true }]}
                   onSubmit={async (v) => {
                     const { error } = await supabase.from("event_registrations").insert({ event_id: e.id, user_id: user?.id ?? null, full_name: v.full_name, email: v.email, phone: v.phone || null });

@@ -30,7 +30,7 @@ function AuthPage() {
     e.preventDefault(); setError(""); setInfo("");
     const raw = Object.fromEntries(new FormData(e.currentTarget).entries());
     const parsed = (mode === "up" ? signUpSchema : signInSchema).safeParse(raw);
-    if (!parsed.success) return setError(parsed.error.issues[0].message);
+    if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Check your details");
     setBusy(true);
     try {
       if (mode === "up") {

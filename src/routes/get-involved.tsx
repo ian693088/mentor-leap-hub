@@ -31,7 +31,7 @@ function GetInvolved() {
   const { data } = useSuspenseQuery(contentQuery);
   const { user } = useAuth();
   const uid = user?.id ?? null;
-  const defaults = { email: user?.email ?? "", full_name: (user?.user_metadata?.full_name as string) ?? "", program_id: program ?? "" };
+  const defaults = { email: user?.email ?? "", full_name: (user?.user_metadata?.["full_name"] as string) ?? "", program_id: program ?? "" };
   const enquiry = (topic: string, label: string) => (
     <SimpleForm key={topic} schema={contactSchema} defaults={{ ...defaults, topic }}
       fields={[...base, { name: "message", label, textarea: true }]}
