@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import mentorship from "@/assets/mentorship.jpg";
 import talent from "@/assets/talent.jpg";
-import { programs, projects, news } from "@/lib/site";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { contentQuery } from "@/lib/queries";
+import { iconFor, formatDate } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,12 +16,16 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Every young person deserves a chance to thrive." },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: Index,
 });
 
-const stats = [["1,200+", "Learners reached"], ["6", "Programs"], ["40+", "Volunteers"], ["15", "Partner schools"]];
 
 function Index() {
+  const { data } = useSuspenseQuery(contentQuery);
+  const { programs, projects, news, impact } = data;
+  const r = impact[0];
+  const stats = [[`${r?.learners_reached ?? 0}+`, "Learners reached"], [String(programs.length), "Programs"], [`${r?.volunteers_engaged ?? 0}`, "Volunteers"], [`${r?.sessions_held ?? 0}`, "Sessions held"]];
   return (
     <>
       <section className="relative overflow-hidden bg-deep text-deep-foreground">
@@ -52,13 +58,13 @@ function Index() {
           <Link to="/programs" className="font-semibold text-primary">View all →</Link>
         </div>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {programs.map((p) => (
-            <div key={p.slug} className="rounded-xl border border-border bg-card p-6">
-              <p.icon className="text-primary" />
+          {programs.map((p) => { const Icon = iconFor(p.icon); return (
+            <div key={p.id} className="rounded-xl border border-border bg-card p-6">
+              <Icon className="text-primary" />
               <h3 className="mt-4 text-lg font-bold">{p.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{p.short}</p>
             </div>
-          ))}
+          ); })}
         </div>
       </section>
 
@@ -80,7 +86,7 @@ function Index() {
           <h2 className="mt-2 text-3xl font-extrabold">Work happening right now</h2>
           <div className="mt-6 grid gap-4">
             {projects.slice(0, 3).map((p) => (
-              <div key={p.title} className="rounded-xl border border-border bg-card p-4">
+              <div key={p.id} className="rounded-xl border border-border bg-card p-4">
                 <div className="flex justify-between text-sm"><span className="font-bold">{p.title}</span><span className="text-muted-foreground">{p.progress}%</span></div>
                 <div className="mt-2 h-2 rounded-full bg-muted"><div className="h-2 rounded-full bg-accent" style={{ width: `${p.progress}%` }} /></div>
               </div>
@@ -94,11 +100,11 @@ function Index() {
         <p className="eyebrow">News & impact</p>
         <h2 className="mt-2 text-3xl font-extrabold">Latest updates</h2>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {news.map((n) => (
-            <article key={n.title} className="rounded-xl bg-secondary p-6">
-              <p className="text-xs font-semibold text-primary">{n.date}</p>
+          {news.slice(0, 3).map((n) => (
+            <article key={n.id} className="rounded-xl bg-secondary p-6">
+              <p className="text-xs font-semibold text-primary">{formatDate(n.published_at)}</p>
               <h3 className="mt-2 font-bold">{n.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{n.summary}</p>
             </article>
           ))}
         </div>
