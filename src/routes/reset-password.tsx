@@ -21,7 +21,7 @@ function Reset() {
     e.preventDefault(); setError("");
     const fd = new FormData(e.currentTarget);
     const pw = passwordSchema.safeParse(fd.get("password"));
-    if (!pw.success) return setError(pw.error.issues[0].message);
+    if (!pw.success) return setError(pw.error.issues[0]?.message ?? "Invalid password");
     if (pw.data !== fd.get("confirm")) return setError("Passwords do not match.");
     setBusy(true);
     const { error } = await supabase.auth.updateUser({ password: pw.data });
