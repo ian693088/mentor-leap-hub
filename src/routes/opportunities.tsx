@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { PageHero } from "@/components/site/SiteHeader";
-import { opportunities } from "@/lib/site";
+import { contentQuery } from "@/lib/queries";
+import { formatDate } from "@/lib/site";
 
 export const Route = createFileRoute("/opportunities")({
   head: () => ({ meta: [
@@ -9,21 +11,28 @@ export const Route = createFileRoute("/opportunities")({
     { property: "og:title", content: "Opportunities — The Baraka Initiative" },
     { property: "og:description", content: "Scholarships, training, internships and events." },
   ] }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: Opps,
 });
 
 function Opps() {
+  const { data } = useSuspenseQuery(contentQuery);
   return (
     <>
       <PageHero eyebrow="Opportunities" title="Verified opportunities for young people" text="Scholarships, training, internships and events — checked by our team." />
       <section className="container-site mt-16 grid gap-4">
-        {opportunities.map((o) => (
-          <div key={o.title} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card p-6">
+        {data.opportunities.length === 0 && <p className="text-muted-foreground">No opportunities open right now.</p>}
+        {data.opportunities.map((o) => (
+          <div key={o.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card p-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-accent">{o.type}</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-accent">{o.kind}</span>
               <h2 className="mt-1 text-lg font-bold">{o.title}</h2>
+              {o.description && <p className="mt-1 text-sm text-muted-foreground">{o.description}</p>}
             </div>
-            <p className="text-sm text-muted-foreground">Deadline: <span className="font-semibold text-foreground">{o.deadline}</span></p>
+            <div className="text-right text-sm">
+              {o.deadline && <p className="text-muted-foreground">Deadline: <span className="font-semibold text-foreground">{formatDate(o.deadline)}</span></p>}
+              {o.link && <a href={o.link} target="_blank" rel="noreferrer" className="font-semibold text-primary">Apply →</a>}
+            </div>
           </div>
         ))}
       </section>
