@@ -20,5 +20,5 @@ export const getGallery = createServerFn({ method: "GET" }).handler(async () => 
   if (!data.length) return [];
   const { data: urls, error: signingError } = await client.storage.from("event-gallery").createSignedUrls(data.map(p => p.storage_path), 3600);
   if (signingError) throw new Error("Photos are temporarily unavailable.");
-  return data.map((photo, index) => ({ ...photo, url: (urls?.[index]?.signedUrl ?? "").replace(url, import.meta.env.VITE_SUPABASE_URL) }));
+  return data.map((photo, index) => ({ ...photo, url: (urls?.[index]?.signedUrl ?? "").replace(url, import.meta.env['VITE_SUPABASE_URL']) }));
 });

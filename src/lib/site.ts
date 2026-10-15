@@ -6,6 +6,7 @@ export const nav = [
   { to: "/programs", label: "Our Programs" },
   { to: "/projects", label: "Projects" },
   { to: "/events", label: "Events" },
+  { to: "/gallery", label: "Gallery" },
   { to: "/get-involved", label: "Get Involved" },
   { to: "/opportunities", label: "Opportunities" },
   { to: "/news", label: "News & Impact" },
