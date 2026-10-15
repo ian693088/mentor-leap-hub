@@ -10,6 +10,8 @@ export const Route = createFileRoute("/opportunities")({
     { name: "description", content: "Scholarships, training, internships and events for young people." },
     { property: "og:title", content: "Opportunities — The Baraka Initiative" },
     { property: "og:description", content: "Scholarships, training, internships and events." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: Opps,

@@ -9,6 +9,8 @@ export const Route = createFileRoute("/projects")({
     { name: "description", content: "Follow our active community projects and their progress." },
     { property: "og:title", content: "Projects — The Baraka Initiative" },
     { property: "og:description", content: "Active community projects and progress." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: Projects,

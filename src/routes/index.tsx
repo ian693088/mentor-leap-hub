@@ -14,6 +14,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Education, mentorship, STEM, talent and skills programs for school-going children and young people in Kenya." },
       { property: "og:title", content: "The Baraka Initiative" },
       { property: "og:description", content: "Every young person deserves a chance to thrive." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),

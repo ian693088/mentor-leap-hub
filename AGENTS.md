@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Gallery photos use private Storage with published-row SELECT policies and expiring signed URLs; this respects workspace restrictions while keeping drafts private.
+- Keep photo management under the authenticated layout and enforce super-admin writes through database and Storage policies, never frontend-only checks.

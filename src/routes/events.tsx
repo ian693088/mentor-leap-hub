@@ -16,6 +16,8 @@ export const Route = createFileRoute("/events")({
     { name: "description", content: "Upcoming workshops, tournaments, showcases and mentorship days — register online." },
     { property: "og:title", content: "Events — The Baraka Initiative" },
     { property: "og:description", content: "Upcoming activities you can register for." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: Events,

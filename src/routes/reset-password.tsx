@@ -9,6 +9,8 @@ export const Route = createFileRoute("/reset-password")({
     { name: "description", content: "Set a new password for your account." },
     { property: "og:title", content: "New password — The Baraka Initiative" },
     { property: "og:description", content: "Set a new password." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Reset,
 });

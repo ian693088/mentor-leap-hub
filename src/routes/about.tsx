@@ -7,6 +7,8 @@ export const Route = createFileRoute("/about")({
     { name: "description", content: "Our mission, vision and values for empowering children and young people." },
     { property: "og:title", content: "About The Baraka Initiative" },
     { property: "og:description", content: "Our mission, vision and values." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: About,
 });

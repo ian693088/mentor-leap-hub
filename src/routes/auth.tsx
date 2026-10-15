@@ -12,6 +12,8 @@ export const Route = createFileRoute("/auth")({
     { name: "description", content: "Sign in or create your Baraka Initiative account." },
     { property: "og:title", content: "Login — The Baraka Initiative" },
     { property: "og:description", content: "Sign in or create an account." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: AuthPage,
 });
