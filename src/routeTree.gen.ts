@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
@@ -56,6 +57,11 @@ const EventsRoute = EventsRouteImport.update({
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetInvolvedRoute = GetInvolvedRouteImport.update({
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/news': typeof NewsRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/news': typeof NewsRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/news': typeof NewsRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/forgot-password'
+    | '/gallery'
     | '/get-involved'
     | '/news'
     | '/opportunities'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/forgot-password'
+    | '/gallery'
     | '/get-involved'
     | '/news'
     | '/opportunities'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/events'
     | '/forgot-password'
+    | '/gallery'
     | '/get-involved'
     | '/news'
     | '/opportunities'
@@ -198,6 +210,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
+  GalleryRoute: typeof GalleryRoute
   GetInvolvedRoute: typeof GetInvolvedRoute
   NewsRoute: typeof NewsRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
@@ -255,6 +268,13 @@ declare module '@tanstack/react-router' {
       path: '/forgot-password'
       fullPath: '/forgot-password'
       preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-involved': {
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
+  GalleryRoute: GalleryRoute,
   GetInvolvedRoute: GetInvolvedRoute,
   NewsRoute: NewsRoute,
   OpportunitiesRoute: OpportunitiesRoute,
