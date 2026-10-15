@@ -10,6 +10,8 @@ export const Route = createFileRoute("/news")({
     { name: "description", content: "Stories, announcements and impact from our programs." },
     { property: "og:title", content: "News & Impact — The Baraka Initiative" },
     { property: "og:description", content: "Stories and impact from our programs." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: News,

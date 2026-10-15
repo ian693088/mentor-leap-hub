@@ -18,6 +18,8 @@ export const Route = createFileRoute("/get-involved")({
     { name: "description", content: "Volunteer, become a member, partner with us, donate or submit a project idea." },
     { property: "og:title", content: "Get Involved — The Baraka Initiative" },
     { property: "og:description", content: "Volunteer, join, partner or submit a project idea." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: GetInvolved,

@@ -13,6 +13,8 @@ export const Route = createFileRoute("/contact")({
     { name: "description", content: "Get in touch with The Baraka Initiative team." },
     { property: "og:title", content: "Contact The Baraka Initiative" },
     { property: "og:description", content: "Send us an enquiry." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Contact,
 });

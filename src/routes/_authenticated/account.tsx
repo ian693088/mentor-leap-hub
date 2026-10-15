@@ -5,7 +5,7 @@ import { canManageGallery } from "@/lib/gallery";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/account")({
-  head: () => ({ meta: [{ title: "My Account — The Baraka Initiative" }, { name: "description", content: "Your account." }] }),
+  head: () => ({ meta: [{ title: "My Account — The Baraka Initiative" }, { name: "description", content: "Your account." }, { property: "og:title", content: "My Account — The Baraka Initiative" }, { property: "og:description", content: "Your Baraka Initiative account." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Account,
 });
 

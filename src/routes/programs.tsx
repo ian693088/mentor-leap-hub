@@ -10,6 +10,8 @@ export const Route = createFileRoute("/programs")({
     { name: "description", content: "Education, mentorship, STEM, sports and arts, youth skills and child welfare programs." },
     { property: "og:title", content: "Our Programs — The Baraka Initiative" },
     { property: "og:description", content: "Six programs supporting children and young people." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   loader: ({ context }) => context.queryClient.ensureQueryData(contentQuery),
   component: Programs,
