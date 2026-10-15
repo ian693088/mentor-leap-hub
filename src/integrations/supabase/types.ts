@@ -135,6 +135,42 @@ export type Database = {
           },
         ]
       }
+      gallery_photos: {
+        Row: {
+          caption: string
+          created_at: string
+          created_by: string
+          event_date: string | null
+          event_name: string
+          id: string
+          published: boolean
+          storage_path: string
+          title: string
+        }
+        Insert: {
+          caption?: string
+          created_at?: string
+          created_by: string
+          event_date?: string | null
+          event_name?: string
+          id?: string
+          published?: boolean
+          storage_path: string
+          title: string
+        }
+        Update: {
+          caption?: string
+          created_at?: string
+          created_by?: string
+          event_date?: string | null
+          event_name?: string
+          id?: string
+          published?: boolean
+          storage_path?: string
+          title?: string
+        }
+        Relationships: []
+      }
       impact_reports: {
         Row: {
           created_at: string

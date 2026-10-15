@@ -8,6 +8,13 @@
       "when": 1791879785786,
       "tag": "0000_baraka_core_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792062656341,
+      "tag": "0001_event_gallery",
+      "breakpoints": true
     }
   ]
 }
