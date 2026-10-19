@@ -569,6 +569,7 @@ export type Database = {
         Returns: boolean
       }
       event_is_open: { Args: { _event_id: string }; Returns: boolean }
+      grant_admin_by_email: { Args: { _email: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

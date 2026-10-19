@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { nav } from "@/lib/site";
 import logo from "@/assets/baraka-logo.jpeg.asset.json";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
 
 export function Logo() {
   return (
@@ -14,6 +15,18 @@ export function Logo() {
         THE BARAKA<br /><span className="text-accent">INITIATIVE</span>
       </span>
     </Link>
+  );
+}
+
+function AccountLinks() {
+  const { user, roles } = useAuth();
+  const cls = "whitespace-nowrap rounded-full border border-border px-4 py-2 text-sm font-semibold hover:bg-secondary";
+  if (!user) return <Link to="/auth" className={cls}>Login / Register</Link>;
+  return (
+    <>
+      {roles.includes("super_admin") && <Link to="/admin" className={cls}>Admin</Link>}
+      <Link to="/account" className={cls}>My Account</Link>
+    </>
   );
 }
 
@@ -30,7 +43,10 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link to="/get-involved" className="hidden shrink-0 whitespace-nowrap rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-foreground xl:inline-flex">Join Us</Link>
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
+          <AccountLinks />
+          <Link to="/get-involved" className="whitespace-nowrap rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-foreground">Join Us</Link>
+        </div>
         <Button variant="ghost" size="icon" aria-label="Open menu" className="xl:hidden" onClick={() => setOpen(true)}><Menu /></Button>
       </div>
       {open && createPortal(
@@ -43,6 +59,7 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
+            <div className="mt-3 flex flex-col gap-2" onClick={() => setOpen(false)}><AccountLinks /></div>
           </aside>
         </div>, document.body
       )}
@@ -61,6 +78,7 @@ export function SiteFooter() {
             <Button asChild><a href="mailto:ian693088@gmail.com"><Mail /> EMAIL ME</a></Button>
             <a href="mailto:ian693088@gmail.com" className="break-all text-sm">ian693088@gmail.com</a>
             <a href="tel:+254741287423" className="flex items-center gap-2 text-sm"><Phone size={16} /> +254 74128 7423</a>
+            <a href="tel:+254717830060" className="flex items-center gap-2 text-sm"><Phone size={16} /> Support us: +254 717 830060</a>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 text-sm">

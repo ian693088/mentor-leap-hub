@@ -30,6 +30,7 @@ function Contact() {
         <div className="mb-8 flex flex-wrap items-center gap-5">
           <Button asChild><a href="mailto:ian693088@gmail.com"><Mail /> EMAIL ME</a></Button>
           <a className="flex items-center gap-2 font-medium text-primary" href="tel:+254741287423"><Phone size={18} /> +254 74128 7423</a>
+          <a className="flex items-center gap-2 font-medium text-primary" href="tel:+254717830060"><Phone size={18} /> Want to support us? +254 717 830060</a>
           <a className="break-all text-sm text-muted-foreground" href="mailto:ian693088@gmail.com">ian693088@gmail.com</a>
         </div>
         <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
