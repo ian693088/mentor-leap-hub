@@ -87,7 +87,7 @@ function Table({ table, cols }: { table: TabKey; cols: readonly string[] }) {
         <thead className="bg-secondary"><tr>{cols.map((c) => <th key={c} className="whitespace-nowrap px-3 py-2 capitalize">{c.replace(/_/g, " ")}</th>)}</tr></thead>
         <tbody>
           {data.map((r, i) => (
-            <tr key={String(r.id ?? i)} className="border-t border-border align-top">
+            <tr key={String(r["id"] ?? i)} className="border-t border-border align-top">
               {cols.map((c) => <td key={c} className="max-w-xs px-3 py-2">{c === "created_at" ? formatDate(String(r[c]), true) : String(r[c] ?? "")}</td>)}
             </tr>
           ))}
