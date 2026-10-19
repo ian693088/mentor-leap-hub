@@ -15,6 +15,13 @@
       "when": 1792062656341,
       "tag": "0001_event_gallery",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792410622575,
+      "tag": "0002_auto_admins",
+      "breakpoints": true
     }
   ]
 }
