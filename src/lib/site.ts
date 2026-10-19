@@ -8,6 +8,7 @@ export const nav = [
   { to: "/events", label: "Events" },
   { to: "/gallery", label: "Gallery" },
   { to: "/get-involved", label: "Get Involved" },
+  { to: "/request-help", label: "Request Help" },
   { to: "/opportunities", label: "Opportunities" },
   { to: "/news", label: "News & Impact" },
   { to: "/contact", label: "Contact" },
