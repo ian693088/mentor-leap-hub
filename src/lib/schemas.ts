@@ -20,5 +20,9 @@ export const contactSchema = z.object({
   message: z.string().trim().min(2, "Please write a message").max(2000),
 });
 export const eventRegistrationSchema = z.object({ full_name: name, email, phone });
+export const helpRequestSchema = z.object({
+  full_name: name, email, phone,
+  need: z.string().trim().min(10, "Please describe what you need help with").max(3000),
+});
 
 export const passwordSchema = z.string().min(8, "Use at least 8 characters").max(72);
