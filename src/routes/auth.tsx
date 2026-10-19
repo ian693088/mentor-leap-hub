@@ -18,7 +18,7 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-const signUpSchema = z.object({ full_name: z.string().trim().min(2, "Enter your name").max(120), email: z.string().trim().email("Enter a valid email"), password: passwordSchema });
+const signUpSchema = z.object({ full_name: z.string().trim().min(2, "Enter your name").max(120), email: z.string().trim().email("Enter a valid email"), phone: z.string().trim().max(30).regex(/^[+0-9 ()-]*$/, "Phone: digits only").optional(), password: passwordSchema });
 const signInSchema = z.object({ email: z.string().trim().email("Enter a valid email"), password: z.string().min(1, "Enter your password") });
 
 function AuthPage() {
@@ -37,7 +37,7 @@ function AuthPage() {
     try {
       if (mode === "up") {
         const v = parsed.data as z.infer<typeof signUpSchema>;
-        const { error } = await supabase.auth.signUp({ email: v.email, password: v.password, options: { emailRedirectTo: window.location.origin, data: { full_name: v.full_name } } });
+        const { error } = await supabase.auth.signUp({ email: v.email, password: v.password, options: { emailRedirectTo: window.location.origin, data: { full_name: v.full_name, phone: v.phone ?? "" } } });
         if (error) throw error;
         setInfo("Account created. Check your email and click the confirmation link, then sign in.");
         setMode("in");
@@ -70,6 +70,7 @@ function AuthPage() {
         <div className="my-5 text-center text-xs text-muted-foreground">or with email</div>
         <form noValidate onSubmit={submit} className="grid gap-3">
           {mode === "up" && <input name="full_name" placeholder="Full name" className={cls} autoComplete="name" />}
+          {mode === "up" && <input name="phone" type="tel" placeholder="Phone (optional)" className={cls} autoComplete="tel" />}
           <input name="email" type="email" placeholder="Email" className={cls} autoComplete="email" />
           <input name="password" type="password" placeholder="Password" className={cls} autoComplete={mode === "up" ? "new-password" : "current-password"} />
           {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
