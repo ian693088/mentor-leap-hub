@@ -171,6 +171,45 @@ export type Database = {
         }
         Relationships: []
       }
+      help_requests: {
+        Row: {
+          approval_email_sent_at: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          need: string
+          phone: string | null
+          reviewed_at: string | null
+          status: Database["public"]["Enums"]["review_status"]
+          user_id: string | null
+        }
+        Insert: {
+          approval_email_sent_at?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          need: string
+          phone?: string | null
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
+          user_id?: string | null
+        }
+        Update: {
+          approval_email_sent_at?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          need?: string
+          phone?: string | null
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       impact_reports: {
         Row: {
           created_at: string
