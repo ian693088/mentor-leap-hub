@@ -22,6 +22,7 @@ import { Route as NewsRouteImport } from './routes/news'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as RequestHelpRouteImport } from './routes/request-help'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
@@ -91,6 +92,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RequestHelpRoute = RequestHelpRouteImport.update({
+  id: '/request-help',
+  path: '/request-help',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/programs': typeof ProgramsRoute
   '/projects': typeof ProjectsRoute
+  '/request-help': typeof RequestHelpRoute
   '/reset-password': typeof ResetPasswordRoute
   '/account': typeof AuthenticatedAccountRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/opportunities': typeof OpportunitiesRoute
   '/programs': typeof ProgramsRoute
   '/projects': typeof ProjectsRoute
+  '/request-help': typeof RequestHelpRoute
   '/reset-password': typeof ResetPasswordRoute
   '/account': typeof AuthenticatedAccountRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/programs': typeof ProgramsRoute
   '/projects': typeof ProjectsRoute
+  '/request-help': typeof RequestHelpRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/programs'
     | '/projects'
+    | '/request-help'
     | '/reset-password'
     | '/account'
     | '/admin'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/programs'
     | '/projects'
+    | '/request-help'
     | '/reset-password'
     | '/account'
     | '/admin'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/programs'
     | '/projects'
+    | '/request-help'
     | '/reset-password'
     | '/_authenticated/account'
     | '/_authenticated/admin'
@@ -241,6 +253,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   ProgramsRoute: typeof ProgramsRoute
   ProjectsRoute: typeof ProjectsRoute
+  RequestHelpRoute: typeof RequestHelpRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
@@ -337,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/request-help': {
+      id: '/request-help'
+      path: '/request-help'
+      fullPath: '/request-help'
+      preLoaderRoute: typeof RequestHelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
@@ -397,6 +417,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   ProgramsRoute: ProgramsRoute,
   ProjectsRoute: ProjectsRoute,
+  RequestHelpRoute: RequestHelpRoute,
   ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
